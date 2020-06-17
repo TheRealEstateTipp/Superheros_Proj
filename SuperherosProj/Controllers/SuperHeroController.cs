@@ -4,14 +4,15 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using SuperherosProj.Data;
+using SuperherosProj.Models;
 
 namespace SuperherosProj.Controllers
 {
-    public class SuperHeroController : Controller
+    public class SuperheroController : Controller
     {
         private ApplicationDbContext _context;
 
-        public SuperHeroController(ApplicationDbContext context)
+        public SuperheroController(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -19,6 +20,20 @@ namespace SuperherosProj.Controllers
         {
             return View();
         }
+
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Create(Superhero superhero)
+        {
+            _context.Superheroes.Add(superhero);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
 
     }
 }
