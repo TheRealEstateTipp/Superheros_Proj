@@ -39,5 +39,24 @@ namespace SuperherosProj.Controllers
             var superhero = _context.Superheroes.Where(s => s.ID == id).SingleOrDefault();
             return View(superhero);
         }
+
+        public IActionResult Edit()
+        {
+            return View();
+        }
+
+        public IActionResult Edit(int id)
+        {
+            var superhero = _context.Superheroes.Where(s => s.ID == id).SingleOrDefault();
+            _context.Superheroes.Update(superhero);
+            _context.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete()
+        {
+            return View();
+        }
     }
+
 }
