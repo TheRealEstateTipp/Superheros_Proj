@@ -34,10 +34,10 @@ namespace SuperherosProj.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
-        public IActionResult Details()
+        public IActionResult Details(int id)
         {
-            var superheroes = _context.Superheroes.ToList();
-            return View(superheroes);
+            var superhero = _context.Superheroes.Where(s => s.ID == id).SingleOrDefault();
+            return View(superhero);
         }
     }
 }
