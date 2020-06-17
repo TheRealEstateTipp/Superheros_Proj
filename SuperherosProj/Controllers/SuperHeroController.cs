@@ -8,17 +8,18 @@ using SuperherosProj.Models;
 
 namespace SuperherosProj.Controllers
 {
-    public class SuperheroController : Controller
+    public class SuperHeroController : Controller
     {
         private ApplicationDbContext _context;
 
-        public SuperheroController(ApplicationDbContext context)
+        public SuperHeroController(ApplicationDbContext context)
         {
             _context = context;
         }
         public IActionResult Index()
         {
-            return View();
+            var superheroes = _context.Superheroes.ToList();
+            return View(superheroes);
         }
 
         public IActionResult Create()
