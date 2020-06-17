@@ -63,7 +63,7 @@ namespace SuperherosProj.Controllers
         public IActionResult Delete(int id)
         {
             var superhero = _context.Superheroes.Where(s => s.ID == id).SingleOrDefault();
-            _.context.Superheroes.Remove(superhero);
+            _context.Superheroes.Remove(superhero);
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
